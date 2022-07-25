@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "UTeqme2BtBkHu+de5fYEzNxp8sBucMXqF3uIoH/e+xg=",
+  "Source": "PTS.WebAPI",
+  "BasePath": "_content/PTS.WebAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

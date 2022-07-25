@@ -1,0 +1,101 @@
+﻿@model PTS.Data.Models.Customer
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<h2>Thông tin khách hàng</h2>
+    <hr />
+<div>
+    @using (Html.BeginForm()){
+        <h3>Khách hàng: @Html.DisplayFor(item => item.Name)</h3>
+
+        <table class="table mt-4 table table-bordered table-hover ">
+        <tr>
+            <th>Tên tài khoản</th>
+            <td>@Html.DisplayFor(item => item.Username)</td>
+        </tr>
+        <tr>
+            <th>Mật khẩu</th>
+            <td>@Html.DisplayFor(item => item.Password)</td>
+        </tr>
+        <tr>
+            <th>Địa chỉ</th>
+            <td>@Html.DisplayFor(item => item.Address)</td>
+        </tr>
+        <tr>
+            <th>Số điện thoại</th>
+            <td>@Html.DisplayFor(item => item.TelephoneNo)</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>@Html.DisplayFor(item => item.Email)</td>
+        </tr>
+        <tr>
+            <th>Công ty</th>
+            <td>@Html.DisplayFor(item => item.Company)</td>
+        </tr>     
+        </table>
+     <br />
+     <hr />
+     <br />
+     <h3>Các dự án đã đăng ký</h3>
+    <br />
+        <table class="table">
+    <thead>
+        <tr>
+            <th>
+                Tên dự án
+            </th>
+            <th>
+                Ngày bắt đầu dự kiến
+            </th>
+            <th>
+                Ngày kết thúc dự kiến
+            </th>
+            <th>
+                Người quản trị
+            </th>
+            <th>
+                Trạng thái
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Projects) {
+        <tr>
+            <td>
+                <a href="@Url.Action("Details","Projects", new { id = item.CustomerId })">@Html.DisplayFor(modelItem => item.Name)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpectedStartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpectedEndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Administrator.Name)
+            </td>
+            <td>
+                @if (item.Completed)
+                    {
+                        <p style="color:black!important;">Đã hoàn thành</p>
+                    }
+                    else
+                    {
+                        <p style="color:black!important;">Chưa hoàn thành</p>
+                    }
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+    }
+</div>
+<br />
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.CustomerId"><input type="submit" value="Chỉnh sửa" class="btn btn-warning" /></a>  &nbsp&nbsp
+    <a asp-action="Index"><input type="submit" value="Trở về" class="btn btn-success" /></a>
+</div>

@@ -1,0 +1,124 @@
+﻿@model PTS.Data.Models.Team
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<h2>Thông tin nhóm</h2>
+<hr />
+<div>
+    @using (Html.BeginForm()){
+        <h3>Nhóm: @Html.DisplayFor(item => item.Name)</h3>
+
+        <table class="table mt-4 table table-bordered table-hover ">
+        <tr>
+            <th>Địa điểm</th>
+            <td>@Html.DisplayFor(item => item.Location)</td>
+        </tr>
+        <tr>
+            <th>Nhóm trưởng</th>
+            <td>@Html.DisplayFor(item => item.TeamLeader.Name)</td>
+        </tr>
+        <tr>
+            <th>Thông tin nhóm</th>
+            <td>
+                @if (Model.IsExternal)
+                    {
+                        <p style="color:black!important;">Nhóm Outsource</p>
+                    }
+                    else
+                    {
+                        <p style="color:black!important;">Nhóm Product</p>
+                    }
+            </td>
+        </tr>
+        <tr>
+            <th>Số lượng thành viên</th>
+            <td>@Model.Users.Count()</td>
+        </tr>     
+        </table>
+     <br />
+     <hr />
+     <br />
+     <h3>Thành viên nhóm</h3>
+    <br />
+        <table class="table">
+    <thead>
+        <tr>
+            <th>
+                Tên thành viên
+            </th>
+            <th>
+                Tài khoản
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Số điện thoại
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Users) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TelephoneNo)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+     <br />
+     <hr />
+     <br />
+     <h3>Công việc nhóm thực hiện</h3>
+    <br />
+        <table class="table">
+    <thead>
+        <tr>
+            <th>
+                Tên công việc
+            </th>
+            <th>
+                Tiến độ
+            </th>
+            <th>
+                Trạng thái
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Tasks) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PercentCompleted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status.Name)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+    }
+</div>
+<br />
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.TeamId"><input type="submit" value="Chỉnh sửa" class="btn btn-warning" /></a>  &nbsp&nbsp
+    <a asp-action="Index"><input type="submit" value="Trở về" class="btn btn-success" /></a>
+</div>

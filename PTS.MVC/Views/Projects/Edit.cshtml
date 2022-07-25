@@ -1,0 +1,69 @@
+﻿@model PTS.Data.Models.Project
+
+@{
+    ViewData["Title"] = "Chỉnh sửa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Chỉnh sửa dự án: <span asp-validation-for="Name" class="text-danger"></span></h1>
+<hr />
+<br/>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ProjectId" />
+            <div class="form-group">
+                <label class="control-label">Tên dự án</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Ngày bắt đầu dự kiến</label>
+                <input asp-for="ExpectedStartDate" class="form-control" type="date" />
+                <span asp-validation-for="ExpectedStartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Ngày kết thúc dự kiến</label>
+                <input asp-for="ExpectedEndDate" class="form-control" type="date" />
+                <span asp-validation-for="ExpectedEndDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Ngày bắt đầu thực tế</label>
+                <input asp-for="ActualStartDate" class="form-control" type="date" />
+                <span asp-validation-for="ActualStartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Ngày kết thúc thực tế</label>
+                <input asp-for="ActualEndDate" class="form-control" type="date" />
+                <span asp-validation-for="ActualEndDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+               <label  class="control-label"> Trạng thái</label>
+                <select asp-for="Completed" class="form-control" asp-items="@ViewBag.completed"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Khách hàng</label>
+                <select asp-for="CustomerId" class="form-control" asp-items="@ViewBag.customerList"></select>
+                <span asp-validation-for="CustomerId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Người quản trị</label>
+                <select asp-for="AdministratorId" class="form-control" asp-items="@ViewBag.adminList"></select>
+                <span asp-validation-for="AdministratorId" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Lưu thay đổi" class="btn btn-success" width="200px"/>
+            </div>
+        </form>
+    </div>
+</div>
+<br />
+<div>
+    <a asp-action="Index">Trở về danh sách</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

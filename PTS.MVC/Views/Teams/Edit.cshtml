@@ -1,0 +1,49 @@
+﻿@model PTS.Data.Models.Team
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Chỉnh sửa nhóm: <span asp-validation-for="Name" class="text-danger"></span></h1>
+<hr />
+<br/>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="TeamId" />
+            <div class="form-group">
+                <label class="control-label">Tên nhóm</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Địa điểm</label>
+                <input asp-for="Location" class="form-control" />
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Nhóm trưởng</label>
+                <select asp-for="TeamLeaderId" class="form-control" asp-items="ViewBag.TeamLeaderId"></select>
+                <span asp-validation-for="TeamLeaderId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Thông tin nhóm</label>
+                <select asp-for="IsExternal" class="form-control" asp-items="ViewBag.isExternal"></select>
+                <span asp-validation-for="IsExternal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Lưu thay đổi" class="btn btn-success" width="200px"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Trở về danh sách</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,35 @@
+﻿@model PTS.Data.Models.Subtask
+
+@{
+    ViewData["Title"] = "Chi tiết công việc nhỏ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<h2>Chi tiết công việc nhỏ</h2>
+    <hr />
+<div>
+    @using (Html.BeginForm()){
+        <h3 class="text-center">Công việc nhỏ: @Html.DisplayFor(item => item.Name)</h3>
+        <table class="table mt-4 table table-bordered table-hover ">
+        <tr>
+            <th>Thuộc công việc</th>
+            <td>@Html.DisplayFor(item => item.Task.Name)</td>
+        </tr>
+        <tr>
+            <th>Thực hiện bởi</th>
+            <td>@Html.DisplayFor(item => item.TeamMember.Name)</td>
+        </tr>
+        <tr>
+            <th>Trạng thái</th>
+            <td>@Html.DisplayFor(item => item.Status.Name)</td>
+        </tr>
+        <tr>
+            <th>Phần trăm hoàn thành</th>
+            <td>
+                @Html.DisplayFor(item => item.PercentCompleted)%
+            </td>
+        </tr>
+        </table>
+    }
+</div>

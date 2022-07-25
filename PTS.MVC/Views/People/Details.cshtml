@@ -1,0 +1,60 @@
+﻿@model PTS.Data.Models.Person
+
+@{
+    ViewData["Title"] = "Chi tiết nhân viên";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<h2>Thông tin nhân viên</h2>
+    <hr />
+<div>
+    @using (Html.BeginForm()){
+        <h3 class="text-center">Nhân viên: @Html.DisplayFor(item => item.Name)</h3>
+
+        <table class="table mt-4 table table-bordered table-hover ">
+        <tr>
+            <th>Tài khoản</th>
+            <td>@Html.DisplayFor(item => item.Username)</td>
+        </tr>
+        <tr>
+            <th>Mật khẩu</th>
+            <td>@Html.DisplayFor(item => item.Password)</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>@Html.DisplayFor(item => item.Email)</td>
+        </tr>
+        <tr>
+            <th>Số điện thoại</th>
+            <td>@Html.DisplayFor(item => item.TelephoneNo)</td>
+        </tr>
+        <tr>
+            <th>Chức vụ</th>
+            <td>
+                 @if(Model.IsAdministrator)
+                    {
+                        <p style="color:black!important;">Project Manager</p>
+                    }
+                    else
+                    {
+                        <p style="color:black!important;">Nhân viên</p>
+                    }
+            </td>
+        </tr>
+        <tr>
+            <th>Thuộc nhóm</th>
+            <td>
+                @foreach (var item in Model.TeamsNavigation) {
+                <a href="@Url.Action("Details","Teams", new { id = item.TeamId })">@Html.DisplayFor(modelItem => item.Name)</a><br />
+                }
+            </td>
+        </tr>
+        </table>
+    }
+</div>
+<br />
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.UserId"><input type="submit" value="Chỉnh sửa" class="btn btn-warning" /></a>  &nbsp&nbsp
+    <a asp-action="Index"><input type="submit" value="Trở về" class="btn btn-success" /></a>
+</div>

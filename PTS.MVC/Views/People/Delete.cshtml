@@ -1,0 +1,19 @@
+﻿@model PTS.Data.Models.Person
+
+@{
+    ViewData["Title"] = "Xóa nhân viên";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Xóa nhân viên</h1>
+<br />
+<h3>Bạn có chắc muốn xóa nhân viên: @Html.DisplayFor(item => item.Name)</h3>
+<div>
+    <hr />
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="UserId" />
+        <input type="submit" value="Xóa" class="btn btn-danger" width="200px"/> |
+        <a asp-action="Index">Trở về danh sách</a>
+    </form>
+</div>

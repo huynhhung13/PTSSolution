@@ -1,0 +1,62 @@
+﻿@model PTS.Data.Models.Task
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Tạo công việc mới</h1>
+<hr />
+@using (Html.BeginForm("Create", "Tasks", FormMethod.Post))   
+{  
+    @Html.AntiForgeryToken()  
+      
+    <div class="form-horizontal">  
+        <hr />  
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })  
+  
+       <div class="form-group">
+                <label class="control-label">Tên công việc</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+        <div class="form-group">
+                <label class="control-label">Ngày bắt đầu dự kiến</label>
+                <input asp-for="ExpectedDateStarted" class="form-control" type="date" />
+                <span asp-validation-for="ExpectedDateStarted" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Ngày kết thúc dự kiến</label>
+                <input asp-for="ExpectedDateCompleted" class="form-control" type="date" />
+                <span asp-validation-for="ExpectedDateCompleted" class="text-danger"></span>
+            </div>
+        <div class="form-group">  
+            <label class="control-label cold-md-2">Nhóm thực hiện:</label>  
+            <div class="col-md-10">  
+                <select asp-for="TeamId" class="form-control" asp-items="@ViewBag.teamList"></select>  
+                <span asp-validation-for="TeamId" class="text-danger"></span>  
+            </div>  
+        </div> 
+        <div class="form-group">  
+            <label class="control-label cold-md-2">Thuộc dự án</label>  
+            <div class="col-md-10">  
+                <select asp-for="ProjectId" class="form-control" asp-items="@ViewBag.projectList"></select>  
+               <span asp-validation-for="ProjectId" class="text-danger"></span>  
+            </div>  
+        </div>  
+        <br>
+        <div class="form-group">  
+            <div class="col-md-offset-2 col-md-10">  
+                <input type="submit" value="Tạo mới" class="btn btn-primary" width="200px" />  
+            </div>  
+        </div>  
+    </div>  
+}  
+
+<br />
+<div>
+    <a asp-action="Index" asp-controller="Projects">Trờ về danh sách dự án</a>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,55 @@
+﻿@model IEnumerable<PTS.Data.Models.Customer>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Danh sách khách hàng</h1>
+<br />
+<p>
+    <a asp-action="Create"> <input type="button" value="Thêm khách hàng" class="btn btn-primary" width="200px" /></a> 
+</p>
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Tên khách hàng
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Số điện thoại
+            </th>
+            <th>
+                Công ty
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <a href="@Url.Action("Details", new { id = item.CustomerId })">@Html.DisplayFor(modelItem => item.Name)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TelephoneNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Company)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CustomerId"> <input type="submit" value="Chỉnh sửa" class="btn btn-warning" /></a> 
+                &nbsp&nbsp
+                <a asp-action="Delete" asp-route-id="@item.CustomerId"> <input type="submit" value="Xóa" class="btn btn-danger" /></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

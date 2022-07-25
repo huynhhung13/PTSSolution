@@ -1,0 +1,47 @@
+﻿@model PTS.Data.Models.Team
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1>Tạo nhóm mới</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Tên nhóm</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Địa điểm</label>
+                <input asp-for="Location" class="form-control" />
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Trưởng nhóm</label>
+                <select asp-for="TeamLeaderId" class ="form-control" asp-items="ViewBag.TeamLeaderId"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Thuộc nhóm</label>
+                <select asp-for="IsExternal" class ="form-control" asp-items="ViewBag.isExternal"></select>
+            </div>
+            <div class="form-group">  
+            <div class="col-md-offset-2 col-md-10">  
+                <input type="submit" value="Tạo mới" class="btn btn-primary" width="200px" />  
+            </div> 
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Trở về danh sách</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

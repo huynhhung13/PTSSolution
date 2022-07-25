@@ -1,0 +1,19 @@
+﻿@model PTS.Data.Models.Project
+
+@{
+    ViewData["Title"] = "Xóa dự án";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Xóa dự án</h1>
+<br />
+<h3>Bạn có chắc muốn xóa dự án: @Html.DisplayFor(item => item.Name)</h3>
+<div>
+    <hr />
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="ProjectId" />
+        <input type="submit" value="Xóa" class="btn btn-danger" width="200px"/> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

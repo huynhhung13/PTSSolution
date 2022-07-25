@@ -1,0 +1,84 @@
+﻿@model IEnumerable<PTS.Data.Models.Task>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExpectedDateStarted)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExpectedDateCompleted)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ActualDateStarted)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ActualDateCompleted)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PercentCompleted)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Project)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Team)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpectedDateStarted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpectedDateCompleted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActualDateStarted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActualDateCompleted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PercentCompleted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Project.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Team.Location)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.TaskId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.TaskId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.TaskId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

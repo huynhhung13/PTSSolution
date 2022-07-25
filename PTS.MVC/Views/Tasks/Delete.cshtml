@@ -1,0 +1,19 @@
+﻿@model PTS.Data.Models.Task
+
+@{
+    ViewData["Title"] = "Xóa công việc";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Xóa nhân viên</h1>
+<br />
+<h3>Bạn có chắc muốn xóa công việc: @Html.DisplayFor(item => item.Name)</h3>
+<div>
+    <hr />
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="TaskId" />
+        <input type="submit" value="Xóa" class="btn btn-danger" width="200px"/> |
+        <a asp-action="Index">Trở về danh sách</a>
+    </form>
+</div>

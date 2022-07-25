@@ -1,0 +1,125 @@
+﻿@model PTS.Data.Models.Project
+
+@{
+    ViewData["Title"] = "Chi tiết dự án";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<h2>Chi tiết dự án</h2>
+    <hr />
+        <div class="text-left">
+        <a asp-action="Edit" asp-route-id="@Model?.ProjectId"><input type="submit" value="Chỉnh sửa" class="btn btn-warning" /></a>  &nbsp&nbsp
+        <a asp-action="Index"><input type="submit" value="Trở về" class="btn btn-success" /></a>
+        </div>
+<div>
+    @using (Html.BeginForm()){
+        <h3 class="text-center">Dự án: @Html.DisplayFor(item => item.Name)</h3>
+        <table class="table mt-4 table table-bordered table-hover ">
+        <tr>
+            <th>Ngày bắt đầu dự kiến</th>
+            <td>@Html.DisplayFor(item => item.ExpectedStartDate)</td>
+        </tr>
+        <tr>
+            <th>Ngày kết thúc dự kiến</th>
+            <td>@Html.DisplayFor(item => item.ExpectedEndDate)</td>
+        </tr>
+        <tr>
+            <th> Ngày bắt đầu thực tế</th>
+            <td>@Html.DisplayFor(item => item.ActualStartDate)</td>
+        </tr>
+        <tr>
+            <th>Ngày kết thúc thực tế</th>
+            <td>@Html.DisplayFor(item => item.ActualEndDate)</td>
+        </tr>
+        <tr>
+            <th>Hoàn thành</th>
+            <td>
+                 @if(Model.Completed)
+                    {
+                        <p style="color:black!important;">Đã hoàn thành</p>
+                    }
+                    else
+                    {
+                        <p style="color:black!important;">Chưa hoàn thành</p>
+                    }
+            </td>
+        </tr>
+        <tr>
+            <th>Project Manager</th>
+            <td>@Html.DisplayFor(item => item.Administrator.Name)</td>
+        </tr>
+        </table>
+    <br />
+    <hr/>
+        <h3>Khách hàng: @Html.DisplayFor(item => item.Customer.Name)</h3>
+
+        <table class="table mt-4 table table-bordered table-hover ">
+        <tr>
+            <th>Tên tài khoản</th>
+            <td>@Html.DisplayFor(item => item.Customer.Username)</td>
+        </tr>
+        <tr>
+            <th>Địa chỉ</th>
+            <td>@Html.DisplayFor(item => item.Customer.Address)</td>
+        </tr>
+        <tr>
+            <th>Số điện thoại</th>
+            <td>@Html.DisplayFor(item => item.Customer.TelephoneNo)</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>@Html.DisplayFor(item => item.Customer.Email)</td>
+        </tr>
+        <tr>
+            <th>Công ty</th>
+            <td>@Html.DisplayFor(item => item.Customer.Company)</td>
+        </tr>     
+        </table>
+     <br />
+    <hr/>
+    <h3>Các công việc của dự án</h3>
+    <p class="text-right">
+   <a asp-action="Create" asp-controller="Tasks"> <input type="button" value="Thêm công việc" class="btn btn-primary" width="200px" /></a> 
+    </p>
+    <br />
+        <table class="table">
+    <thead>
+        <tr>
+            <th>
+                Tên công việc
+            </th>
+            <th>
+                Trạng thái
+            </th>
+            <th>
+                Phần trăm hoàn thành
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Tasks) {
+        <tr>
+            <td>
+                <a href="@Url.Action("Details","Tasks", new { id = item.TaskId })">@Html.DisplayFor(modelItem => item.Name)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PercentCompleted)%
+            </td>
+            <td>
+                <a href="@Url.Action("Edit","Tasks", new { id = item.TaskId })"> <input type="button" value="Chỉnh sửa" class="btn btn-warning" /></a> 
+                &nbsp&nbsp
+                <a href="@Url.Action("Delete","Tasks", new { id = item.TaskId })"> <input type="button" value="Xóa" class="btn btn-danger" /></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+    }
+</div>
+<br />
+

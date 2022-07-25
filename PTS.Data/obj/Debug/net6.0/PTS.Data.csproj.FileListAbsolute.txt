@@ -1,0 +1,14 @@
+D:\DACN\PTSSolution\PTS.Data\bin\Debug\net6.0\PTS.Data.deps.json
+D:\DACN\PTSSolution\PTS.Data\bin\Debug\net6.0\PTS.Data.runtimeconfig.json
+D:\DACN\PTSSolution\PTS.Data\bin\Debug\net6.0\PTS.Data.dll
+D:\DACN\PTSSolution\PTS.Data\bin\Debug\net6.0\PTS.Data.pdb
+D:\DACN\PTSSolution\PTS.Data\obj\Debug\net6.0\PTS.Data.csproj.AssemblyReference.cache
+D:\DACN\PTSSolution\PTS.Data\obj\Debug\net6.0\PTS.Data.GeneratedMSBuildEditorConfig.editorconfig
+D:\DACN\PTSSolution\PTS.Data\obj\Debug\net6.0\PTS.Data.AssemblyInfoInputs.cache
+D:\DACN\PTSSolution\PTS.Data\obj\Debug\net6.0\PTS.Data.AssemblyInfo.cs
+D:\DACN\PTSSolution\PTS.Data\obj\Debug\net6.0\PTS.Data.csproj.CoreCompileInputs.cache
+D:\DACN\PTSSolution\PTS.Data\obj\Debug\net6.0\PTS.Data.dll
+D:\DACN\PTSSolution\PTS.Data\obj\Debug\net6.0\refint\PTS.Data.dll
+D:\DACN\PTSSolution\PTS.Data\obj\Debug\net6.0\PTS.Data.pdb
+D:\DACN\PTSSolution\PTS.Data\obj\Debug\net6.0\PTS.Data.genruntimeconfig.cache
+D:\DACN\PTSSolution\PTS.Data\obj\Debug\net6.0\ref\PTS.Data.dll
